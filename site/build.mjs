@@ -22,7 +22,7 @@ import { Marked } from "marked";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const DIST = join(ROOT, "dist");
-const SITE_URL = "https://wingravity.github.io/handbook";
+const SITE_URL = "https://handbook.wingravity.com";
 const BASE = `${new URL(SITE_URL).pathname.replace(/\/$/, "")}/`;
 const REPO_URL = "https://github.com/wingravity/handbook";
 

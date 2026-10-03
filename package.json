@@ -1,7 +1,7 @@
 {
   "name": "wingravity-handbook",
   "private": true,
-  "description": "The Wingravity Handbook: Markdown in, wingravity.github.io/handbook out",
+  "description": "The Wingravity Handbook: Markdown in, handbook.wingravity.com out",
   "type": "module",
   "scripts": {
     "build": "node site/build.mjs",
