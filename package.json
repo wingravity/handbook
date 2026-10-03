@@ -1,0 +1,16 @@
+{
+  "name": "wingravity-handbook",
+  "private": true,
+  "description": "The Wingravity Handbook: Markdown in, docs.wingravity.com out",
+  "type": "module",
+  "scripts": {
+    "build": "node site/build.mjs",
+    "preview": "node site/build.mjs && python3 -m http.server 4390 --directory dist"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "marked": "^18.0.14"
+  }
+}
