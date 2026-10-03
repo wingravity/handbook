@@ -1,7 +1,8 @@
 # How the site is built
 
-Every `.md` file in this repo is a page on docs.wingravity.com, at the same path:
-`handbook/how-we-work.md` is `docs.wingravity.com/handbook/how-we-work/`, and a
+Every `.md` file in this repo is a page on wingravity.github.io/handbook, at the
+same path: `handbook/how-we-work.md` is
+`wingravity.github.io/handbook/handbook/how-we-work/`, and a
 folder's `index.md` is the folder's own page.
 
 `README.md` at the root is the home page and the table of contents. Each

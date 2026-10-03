@@ -22,7 +22,8 @@ import { Marked } from "marked";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const DIST = join(ROOT, "dist");
-const SITE_URL = "https://docs.wingravity.com";
+const SITE_URL = "https://wingravity.github.io/handbook";
+const BASE = `${new URL(SITE_URL).pathname.replace(/\/$/, "")}/`;
 const REPO_URL = "https://github.com/wingravity/handbook";
 
 const BRANDING_DIR = resolve(ROOT, process.env.BRANDING_DIR ?? "../wingravity-branding");
@@ -453,24 +454,23 @@ for (const page of pages.values()) {
   }));
 }
 
-/* GitHub Pages serves 404.html at whatever path was missed, so it links from the site root. */
+/* GitHub Pages serves 404.html at whatever path was missed, so it links from BASE. */
 const lost = { src: "README.md", url: "" };
 writeFileSync(join(DIST, "404.html"), shell({
   page: lost,
-  root: "/",
+  root: BASE,
   title: "Lost in space · Wingravity Handbook",
   description: "This page is not in the handbook.",
   main: `
 <main class="wrap lost">
   <div class="eyebrow">404</div>
   <h1>Lost in space</h1>
-  <p class="lede">You have reached the end of the universe. Head back to <a href="/">the handbook</a>.</p>
+  <p class="lede">You have reached the end of the universe. Head back to <a href="${BASE}">the handbook</a>.</p>
 </main>`,
-}).replace(/href="(\.\/|(?!\/|https?:|#)[^"]*)"/g, (m, h) => `href="/${h === "./" ? "" : h}"`));
+}).replace(/href="(\.\/|(?!\/|https?:|#)[^"]*)"/g, (m, h) => `href="${BASE}${h === "./" ? "" : h}"`));
 
 const urls = [...pages.values()].map((p) => `<url><loc>${SITE_URL}/${p.url}</loc></url>`).join("");
 writeFileSync(join(DIST, "sitemap.xml"),
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls}</urlset>\n`);
-writeFileSync(join(DIST, "robots.txt"), `User-agent: *\nAllow: /\nSitemap: ${SITE_URL}/sitemap.xml\n`);
 
 console.log(`Built ${pages.size} pages into dist/`);
